@@ -8,7 +8,7 @@
 ## Computing the inverse of a square matrix can be done with the solve function in R. 
 ## For example, if X is a square invertible matrix, then solve(X) returns its inverse.
 
-## These functions are based on the Assingment Example: Caching the Mean of a Vector
+## These functions are based on the Assignment Example: Caching the Mean of a Vector
 
 ## The first function creates a special "matrix" which is a list containing functions to:
 ##      1. set the value of the matrix
@@ -37,7 +37,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## It will check first to see if the inverse has already been calculated (!is.null(m)). 
 ## If so, it gets the inverse from the cache and skips the computation. Otherwise, it calculates 
 ## the inverse of the data and sets the value of the mean in the cache via the setinverse function.
-##reusing cached result if it is available
+## reusing cached result if it is available
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
