@@ -5,26 +5,26 @@
 ##              above. If the inverse has already been calculated (and the matrix has not changed), 
 ##              then the cachesolve should retrieve the inverse from the cache.
 
-##Computing the inverse of a square matrix can be done with the solve function in R. For example, if X is a square invertible matrix, then solve(X) returns its inverse.
+## Computing the inverse of a square matrix can be done with the solve function in R. 
+## For example, if X is a square invertible matrix, then solve(X) returns its inverse.
 
 ## These functions are based on the Assingment Example: Caching the Mean of a Vector
 
-## The first function creates a special "matrix" which is a list containing 
-## functions to:
-##      set the value of the matrix
-##      get the value of the matrix
-##      set the value of the inverse matrix
-##      get the value of the inverse matrix
+## The first function creates a special "matrix" which is a list containing functions to:
+##      1. set the value of the matrix
+##      2. get the value of the matrix
+##      3. set the value of the inverse matrix
+##      4. get the value of the inverse matrix
 
 makeCacheMatrix <- function(x = matrix()) {
-        m <- NULL
-        set <- function(y) {
+        m <- NULL  ## setting the initial value as NULL
+        set <- function(y) {   ## Assign the value to x and set to NULL when set is called
                 x <<- y
                 m <<- NULL
         }
-        get <- function() x
-        setinverse <- function(inv) m <<- inv
-        getinverse <- function() m
+        get <- function() x    ## Get value when available
+        setinverse <- function(inv) m <<- inv  ## Set inverse value when calculated
+        getinverse <- function() m   ## Get inverse value when available
         list(
                 set = set, 
                 get = get,
@@ -41,14 +41,13 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-        m <- x$getinverse()
-        if(!is.null(m)) {
+        m <- x$getinverse()   ## Check existance of inverse value
+        if(!is.null(m)) {     ## If value available - not NULL - returns it
                 message("getting cached data")
                 return(m)
         }
-        data <- x$get()
-        m <- solve(data, ...)
+        data <- x$get()   
+        m <- solve(data, ...)  ## Use solve(x) to calculate inverse
         x$setinverse(m)
         m
-        
 }
